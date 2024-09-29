@@ -3,6 +3,7 @@
 
 use tauri::Manager;
 use tauri_plugin_positioner::{Position, WindowExt};
+use window_vibrancy::{apply_vibrancy, NSVisualEffectMaterial, NSVisualEffectState};
 
 // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
 #[tauri::command]
@@ -17,6 +18,19 @@ fn main() {
         .setup(|app| {
             let win = app.get_window("main").unwrap();
             let _ = win.move_window(Position::BottomRight);
+
+            // #[cfg(target_os = "macos")]
+            // apply_vibrancy(
+            //     &win,
+            //     NSVisualEffectMaterial::HudWindow,
+            //     Some(NSVisualEffectState::FollowsWindowActiveState),
+            //     Some(12.0),
+            // )
+            // .expect("Unsupported platform! 'apply_vibrancy' is only supported on macOS");
+
+            // #[cfg(target_os = "windows")]
+            // apply_blur(&win, Some((18, 18, 18, 125)))
+            //     .expect("Unsupported platform! 'apply_blur' is only supported on Windows");
 
             Ok(())
         })

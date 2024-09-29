@@ -54,7 +54,5 @@ const unlisten = listen("toggle-decoration", async (event) => {
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
-
-  color: #0f0f0f;
 }
 </style>
