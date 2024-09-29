@@ -6,6 +6,7 @@
     "devPath": "http://localhost:1420",
     "distDir": "../dist"
   },
+
   "package": {
     "productName": "desk-buddy",
     "version": "0.1.0"
@@ -13,6 +14,19 @@
   "tauri": {
     "allowlist": {
       "all": false,
+      "window": {
+        "all": true
+      },
+      "fs": {
+        "createDir": true,
+        "readDir": true,
+        "readFile": true,
+        "writeFile": true,
+        "scope": ["$APPCONFIG", "$APPCONFIG/*"]
+      },
+      "path": {
+        "all": true
+      },
       "shell": {
         "all": false,
         "open": true
