@@ -1,24 +1,14 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import { PokemonName, pokemonSprites } from "./pokemonData";
-import { WebviewWindow } from "@tauri-apps/api/window";
-
-const selectedPokemon = ref<PokemonName>("pikachu");
-
-const sprites = pokemonSprites[selectedPokemon.value];
-console.log(sprites);
+import { WebviewWindow } from "@tauri-apps/api/webviewWindow";
+import { usePokemonStore } from "./stores/pokemonStore";
 
 const openSettings = () => {
   try {
-    const webview = new WebviewWindow(
-      `settings?selectedPokemon=${selectedPokemon.value}`,
-      {
-        // url: "/settings.html",
-        url: "/settings",
-        title: "Settings",
-        center: true,
-      }
-    );
+    const webview = new WebviewWindow(`settings`, {
+      url: "/settings",
+      title: "Settings",
+      center: true,
+    });
     // since the webview window is created asynchronously,
     // Tauri emits the `tauri://created` and `tauri://error` to notify you of the creation response
     webview.once("tauri://created", function () {
