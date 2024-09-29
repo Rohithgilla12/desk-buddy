@@ -37,9 +37,10 @@
       {
         "title": "desk-buddy",
         "width": 300,
-        "height": 150,
+        "height": 200,
         "transparent": true,
-        "alwaysOnTop": true
+        "alwaysOnTop": true,
+        "decorations": false
       }
     ],
     "security": {

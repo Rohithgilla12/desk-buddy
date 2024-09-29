@@ -3,18 +3,17 @@ import { ref } from "vue";
 
 import { listen } from "@tauri-apps/api/event";
 import { PokemonName } from "../pokemonData";
+import { usePokemonStore } from "../stores/pokemonStore";
 
-const selectedPokemon = ref<PokemonName | null>(null);
+const store = usePokemonStore();
+const selectedPokemon = ref<PokemonName>(store.selectedPokemon);
 
-const sprites = ref<string[] | null>(null);
-const selectedSprite = ref<string | null>(null);
+const selectedSprite = ref<string | null>(store.selectedSprite);
 
 listen("pokemon-selected", (event) => {
   const payload = JSON.parse(event.payload as string);
   try {
     selectedPokemon.value = payload.name;
-    sprites.value = payload.sprites;
-    selectedSprite.value = sprites.value[0];
   } catch (error) {
     console.error(error);
   }
@@ -32,7 +31,7 @@ listen("sprite-selected", (event) => {
         v-if="selectedSprite"
         :src="selectedSprite"
         alt="Desk Buddy"
-        class="w-48 h-48 object-cover mx-auto"
+        class="w-24 h-24 object-contain mx-auto"
       />
     </div>
   </div>

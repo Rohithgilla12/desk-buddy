@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import { WebviewWindow } from "@tauri-apps/api/webviewWindow";
-import { usePokemonStore } from "./stores/pokemonStore";
+import { WebviewWindow } from "@tauri-apps/api/window";
 
 const openSettings = () => {
   try {
-    const webview = new WebviewWindow(`settings`, {
+    const webview = new WebviewWindow("settings", {
       url: "/settings",
       title: "Settings",
       center: true,
