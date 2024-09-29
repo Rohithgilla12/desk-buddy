@@ -17,12 +17,13 @@ const filteredPokemonList = computed(() => {
 });
 
 const selectPokemon = async (pokemon: PokemonName) => {
-  selectedPokemon.value = pokemon; // Update selected Pokémon
   pokemonStore.selectPokemon(pokemon);
   emit("pokemon-selected", {
     name: pokemon,
     sprites: pokemonSprites[pokemon],
   });
+
+  selectSprite(pokemonStore.selectedSprite);
 };
 
 const selectSprite = (sprite: string) => {
