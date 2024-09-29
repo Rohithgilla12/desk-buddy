@@ -10,14 +10,15 @@ console.log(sprites);
 
 const openSettings = () => {
   try {
-    console.log("Opening settings");
-
-    const webview = new WebviewWindow("settings", {
-      // url: "/settings.html",
-      url: "/settings",
-      title: "Settings",
-      center: true,
-    });
+    const webview = new WebviewWindow(
+      `settings?selectedPokemon=${selectedPokemon.value}`,
+      {
+        // url: "/settings.html",
+        url: "/settings",
+        title: "Settings",
+        center: true,
+      }
+    );
     // since the webview window is created asynchronously,
     // Tauri emits the `tauri://created` and `tauri://error` to notify you of the creation response
     webview.once("tauri://created", function () {
@@ -35,7 +36,9 @@ const openSettings = () => {
 
 <template>
   <nav>
-    <button @click="openSettings">Settings</button>
+    <button class="absolute top-0 right-0 m-4 text-white" @click="openSettings">
+      Settings
+    </button>
   </nav>
   <RouterView />
 </template>

@@ -27,7 +27,14 @@ watch(selectedPokemon, (newVal) => {
 </script>
 
 <template>
-  <div class="container">
-    <img v-if="sprites" :src="sprites[0]" alt="Desk Buddy" />
+  <div class="flex items-center justify-center h-screen">
+    <div class="p-8">
+      <img
+        v-if="sprites"
+        :src="sprites[0]"
+        alt="Desk Buddy"
+        class="w-48 h-48 object-contain mx-auto"
+      />
+    </div>
   </div>
 </template>
