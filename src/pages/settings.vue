@@ -43,6 +43,12 @@ const selectSprite = (sprite: string) => {
         <h1 class="text-2xl font-semibold mb-6 text-center text-gray-900">
           Settings
         </h1>
+        <button
+          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          @click="emit('toggle-decoration')"
+        >
+          Change Position
+        </button>
         <div class="mb-4">
           <span class="font-semibold">Current Pokemon:</span>
           <span class="ml-2">{{ selectedPokemon }}</span>

@@ -1,5 +1,7 @@
 <script setup lang="ts">
+import { listen } from "@tauri-apps/api/event";
 import { WebviewWindow } from "@tauri-apps/api/window";
+import { appWindow } from "@tauri-apps/api/window";
 
 const openSettings = () => {
   try {
@@ -21,6 +23,20 @@ const openSettings = () => {
     console.error(error);
   }
 };
+
+const toggleDecoration = async () => {
+  try {
+    const isDecorated = await appWindow.isDecorated();
+    appWindow.setDecorations(!isDecorated);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const unlisten = listen("toggle-decoration", async (event) => {
+  console.log(event);
+  await toggleDecoration();
+});
 </script>
 
 <template>
