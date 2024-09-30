@@ -33,7 +33,7 @@ const toggleDecoration = async () => {
   }
 };
 
-const unlisten = listen("toggle-decoration", async (event) => {
+listen("toggle-decoration", async (event) => {
   console.log(event);
   await toggleDecoration();
 });
